@@ -4,11 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Developer Portfolio</title>
+
+    <title>S Harsha Vardhan | Full Stack Developer (Java, React, Spring Boot)</title>
+    <meta name="description"
+        content="Portfolio of S Harsha Vardhan, a Full Stack Software Engineer specializing in Java, Spring Boot, React.js, and System Design. View my projects and experience." />
+    <meta name="keywords"
+        content="Harsha Vardhan, Full Stack Developer, Java Developer, Spring Boot, React, Hyderabad, Software Engineer Portfolio" />
+    <meta name="author" content="S Harsha Vardhan" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="S Harsha Vardhan | Full Stack Developer" />
+    <meta property="og:description"
+        content="Check out my developer portfolio. I build scalable web apps with Java, Spring Boot, and React." />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/harsha126/portfolio/refs/heads/main/1688840241431.jpeg" />
+    <meta property="og:url" content="https://github.com/harsha126" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
+        /* CSS remains mostly the same, just ensured it handles static content correctly */
         * {
             margin: 0;
             padding: 0;
@@ -25,22 +43,16 @@
             padding: 1rem;
         }
 
-        @media (max-width: 640px) {
-            body {
-                padding: 0.5rem;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            body {
-                padding: 0.75rem;
-            }
-        }
-
         @media (min-width: 1024px) {
             body {
                 padding: 2rem;
             }
+        }
+
+        /* Links */
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
         .window {
@@ -102,20 +114,11 @@
             height: 70vh;
             overflow-y: auto;
             padding: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #4b5563 #300A24;
         }
 
-        .content {
-            color: #e5e7eb;
-            font-size: 0.875rem;
-            line-height: 1.625;
-        }
-
-        @media (min-width: 640px) {
-            .content {
-                font-size: 1rem;
-            }
-        }
-
+        /* Content Layout */
         .content-spacing {
             display: flex;
             flex-direction: column;
@@ -182,11 +185,10 @@
             }
         }
 
-        /* Section */
+        /* Terminal Sections */
         .section {
             display: flex;
             flex-direction: column;
-            gap: 0;
         }
 
         .section-command {
@@ -194,6 +196,7 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
         .command-user {
@@ -214,17 +217,18 @@
             color: #e5e7eb;
         }
 
-        /* Experience Section */
-        .experience-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .experience-item h3 {
+        /* Typography & Lists */
+        h3 {
             font-weight: bold;
             font-size: 1.125rem;
             color: #ffffff;
+        }
+
+        p,
+        li {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .experience-company {
@@ -233,22 +237,19 @@
 
         .experience-duration {
             color: #9ca3af;
+            font-size: 0.85rem;
         }
 
         .experience-description {
             margin-top: 0.5rem;
-            color: #d1d5db;
+            margin-left: 1rem;
+            list-style-type: disc;
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
         }
 
-        .experience-description li {
-            margin-left: 1rem;
-            list-style-type: disc;
-        }
-
-        /* Projects Section */
+        /* Projects */
         .projects-list {
             display: flex;
             flex-direction: column;
@@ -264,42 +265,24 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .project-name {
             font-weight: bold;
             font-size: 1.125rem;
             color: #ffffff;
-            text-decoration: none;
         }
 
         .project-name:hover {
             text-decoration: underline;
+            color: #4ade80;
         }
 
         .github-icon {
             width: 1.25rem;
             height: 1.25rem;
-            display: inline-block;
-            vertical-align: middle;
-            transition: all 0.2s;
-        }
-
-        .github-icon svg {
-            width: 100%;
-            height: 100%;
-            fill: #ffffff;
-            transition: fill 0.2s;
-        }
-
-        .project-name:hover .github-icon svg {
-            fill: #4ade80;
-        }
-
-        .project-description {
-            color: #d1d5db;
-            margin-top: 0.25rem;
-            margin-bottom: 0.25rem;
+            fill: #fff;
         }
 
         .project-tech {
@@ -314,11 +297,11 @@
             color: #86efac;
             font-size: 0.75rem;
             font-weight: 500;
-            padding: 0.375rem 0.625rem;
-            border-radius: 9999px;
+            padding: 0.25rem 0.625rem;
+            border-radius: 99px;
         }
 
-        /* Skills Section */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -332,39 +315,19 @@
         }
 
         .skill-category h3 {
-            font-weight: bold;
             color: #4ade80;
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
 
-        .skill-items {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
         .skill-item {
             padding-left: 1rem;
             border-left: 2px solid #4b5563;
+            margin-bottom: 0.25rem;
+            color: #e5e7eb;
         }
 
-        /* Education Section */
-        .education-item h3 {
-            font-weight: bold;
-            font-size: 1.125rem;
-            color: #ffffff;
-        }
-
-        .education-degree {
-            color: #4ade80;
-        }
-
-        .education-meta {
-            color: #9ca3af;
-        }
-
-        /* Contact Section */
+        /* Contact */
         .contact-list {
             display: flex;
             flex-direction: column;
@@ -382,14 +345,14 @@
 
         .contact-link {
             color: #ffffff;
-            text-decoration: none;
         }
 
         .contact-link:hover {
             text-decoration: underline;
+            color: #4ade80;
         }
 
-        /* Scrollbar styling */
+        /* Scrollbar */
         .window-main::-webkit-scrollbar {
             width: 8px;
         }
@@ -421,97 +384,158 @@
             </div>
         </header>
         <main class="window-main">
-            <div class="content content-spacing" id="content"></div>
+            <div class="content-spacing">
+
+                <section class="welcome-section" id="welcome">
+                    <img src="https://raw.githubusercontent.com/harsha126/portfolio/refs/heads/main/1688840241431.jpeg"
+                        alt="S Harsha Vardhan - Full Stack Developer" class="profile-picture" loading="lazy">
+                    <div class="welcome-text">
+                        <h1>S Harsha Vardhan</h1>
+                        <div class="typing-text" id="typing"></div>
+                        <noscript>Full Stack Developer | Java | Spring Boot | React.js</noscript>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-command">
+                        <span class="command-user">harsha@ubuntu</span>
+                        <span class="command-colon">:</span>
+                        <span class="command-path">~</span>
+                        <span class="command-text">$ ./show-experience.sh</span>
+                    </div>
+                    <div class="experience-list">
+                        <div>
+                            <h3>Software Engineer</h3>
+                            <p><span class="experience-company">Sureify</span> <span class="experience-duration">| Nov
+                                    2023 - Present</span></p>
+                            <ul class="experience-description">
+                                <li>Architected and deployed backend systems, boosting API performance by 40%.</li>
+                                <li>Engineered storage models using JSON mapping for 100k+ records.</li>
+                                <li>Developed reusable microservices for insurance products.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Software Engineer Intern</h3>
+                            <p><span class="experience-company">Sureify</span> <span class="experience-duration">| Feb
+                                    2023 - Nov 2023</span></p>
+                            <ul class="experience-description">
+                                <li>Built a Poll Dashboard with dynamic visualizations to track user engagement.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Software Engineer Intern</h3>
+                            <p><span class="experience-company">Ennea Solutions</span> <span
+                                    class="experience-duration">| Jul 2022 - Feb 2023</span></p>
+                            <ul class="experience-description">
+                                <li>Implemented offer/discount features using Spring Boot and React.</li>
+                                <li>Designed responsive UIs for stock management applications.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-command">
+                        <span class="command-user">harsha@ubuntu</span>
+                        <span class="command-colon">:</span>
+                        <span class="command-path">~</span>
+                        <span class="command-text">$ ./view-projects.sh</span>
+                    </div>
+                    <div class="projects-list">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <a href="https://github.com/harsha126" target="_blank" rel="noopener noreferrer"
+                                    class="project-name">Code Editor Sandbox</a>
+                                <svg class="github-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </div>
+                            <p>Coding sandbox for PHP and Java with syntax highlighting, execution via Piston API, and
+                                Language Server integration.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">React.js</span><span class="tech-badge">Spring Boot</span><span
+                                    class="tech-badge">WebSockets</span><span class="tech-badge">Language Server</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-header">
+                                <a href="https://github.com/harsha126" target="_blank" rel="noopener noreferrer"
+                                    class="project-name">Airforce Communication Hub</a>
+                                <svg class="github-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </div>
+                            <p>Real-time collaboration portal for Airforce personnel using WebSockets and batch-based
+                                data management.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Node.js</span><span class="tech-badge">Mongo DB</span><span
+                                    class="tech-badge">Socket.io</span><span class="tech-badge">JWT</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-command">
+                        <span class="command-user">harsha@ubuntu</span>
+                        <span class="command-colon">:</span>
+                        <span class="command-path">~</span>
+                        <span class="command-text">$ ./list-skills.sh</span>
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Languages</h3>
+                            <div class="skill-item">Java, Javascript, Python, SQL</div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Frameworks</h3>
+                            <div class="skill-item">Spring Boot, React.js, Node.js, Express</div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Tools</h3>
+                            <div class="skill-item">Docker, WebSockets, Git, System Design</div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Databases</h3>
+                            <div class="skill-item">MySQL, MongoDB</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-command">
+                        <span class="command-user">harsha@ubuntu</span>
+                        <span class="command-colon">:</span>
+                        <span class="command-path">~</span>
+                        <span class="command-text">$ cat contact.txt</span>
+                    </div>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span class="contact-label">email:</span>
+                            <a href="mailto:harsha.sdm111@gmail.com" class="contact-link">harsha.sdm111@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">linkedin:</span>
+                            <a href="https://linkedin.com/in/harsha-vardhan-39aa47183/" target="_blank"
+                                rel="noopener noreferrer" class="contact-link">harsha-vardhan-39aa47183</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">github:</span>
+                            <a href="https://github.com/harsha126" target="_blank" rel="noopener noreferrer"
+                                class="contact-link">harsha126</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
         </main>
     </div>
 
     <script>
-        // --- DATA CONSTANTS ---
-        const PROFILE_PICTURE_URL = "https://raw.githubusercontent.com/harsha126/portfolio/refs/heads/main/1688840241431.jpeg";
-
-        const WELCOME_MESSAGES = [
-            "Hello, I'm Harsha Vardhan.",
-            "I'm a Full Stack Developer.",
-            "Welcome to my terminal."
-        ];
-
-        const EXPERIENCE_DATA = [
-            {
-                company: "Sureify",
-                role: "Software Engineer",
-                duration: "Nov 2023 - Present",
-                description: [
-                    "Architected and deployed the second version of the backend system, optimizing algorithms to lower time complexity and boosting API performance by 40%.",
-                    "Engineered a new storage model using question-ID-based key-value JSON mapping, enabling seamless handling of 100k+ records.",
-                    "Developed a reusable Price Illustration microservice, integrated across all Sureify insurance products."
-                ]
-            },
-            {
-                company: "Sureify",
-                role: "Software Engineer Intern",
-                duration: "Feb 2023 - Nov 2023",
-                description: [
-                    "Built a Poll Dashboard to create, monitor, and analyze polls, leveraging dynamic visualizations and interactive graphs to track user engagement."
-                ]
-            },
-            {
-                company: "Ennea Solutions",
-                role: "Software Engineer Intern",
-                duration: "Jul 2022 - Feb 2023",
-                description: [
-                    "Contributed to a pharmaceutical stock management application by implementing offer and discount features using Spring Boot and React.",
-                    "Designed and developed responsive user interfaces with React and Spring Boot for interactive tabular views of uploaded CSV files."
-                ]
-            }
-        ];
-
-        const SKILLS_DATA = [
-            {
-                category: "Languages",
-                items: ["Java", "Javascript", "Python", "PHP", "Go", "Typescript", "Sql", "NoSql"]
-            },
-            {
-                category: "Frameworks & Libraries",
-                items: ["React.js", "Spring Boot", "Node.js", "Express.js", "Tailwind CSS", "React Native", "Laravel"]
-            },
-            {
-                category: "Tools & Technologies",
-                items: ["JWT", "Socket.io", "WebSockets", "Language Server", "Agile Methodology", "System Design"]
-            },
-            {
-                category: "Databases",
-                items: ["MySQL", "MongoDB"]
-            }
-        ];
-
-        const PROJECTS_DATA = [
-            {
-                name: "Code Editor Sandbox",
-                description: "Developed a coding sandbox for PHP and Java with syntax highlighting and code execution via Piston API. Implemented language servers for both languages, using Spring Boot as a proxy between the language client and server, integrated with user sessions and unique workspaces.",
-                tech: ["React.js", "Spring Boot", "Language Server", "WebSockets", "Threading", "Tailwind CSS"],
-                link: "https://github.com/harsha126"
-            },
-            {
-                name: "Airforce Communication Hub",
-                description: "A full-stack portal for Airforce personnel to connect and collaborate. Implemented real-time communication with WebSockets for instant chat and designed batch-based data management for secure member grouping.",
-                tech: ["React.js", "Node.js", "Mongo DB", "Socket.io", "JWT", "Tailwind CSS"],
-                link: "https://github.com/harsha126"
-            }
-        ];
-
-        const EDUCATION_DATA = {
-            school: "Sreenidhi Institute Of Science And Technology",
-            degree: "Bachelor of Technology, Computer Science",
-            gpa: "CGPA: 8.33/10.00",
-            duration: "Expected June 2023"
-        };
-
-        const CONTACT_DATA = {
-            email: "harsha.sdm111@gmail.com",
-            linkedin: "linkedin.com/in/harsha-vardhan-39aa47183/",
-            github: "github.com/harsha126"
-        };
-
+        // --- TYPING EFFECT ONLY ---
+        // We kept the visual flair, but removed the data injection to favor HTML (SEO friendly)
         class TypingEffect {
             constructor(elementId, messages) {
                 this.element = document.getElementById(elementId);
@@ -522,13 +546,10 @@
                 this.start();
             }
 
-            start() {
-                this.update();
-            }
+            start() { this.update(); }
 
             update() {
                 const currentMessage = this.messages[this.currentMessageIndex];
-
                 if (this.isTyping) {
                     if (this.displayedText.length < currentMessage.length) {
                         this.displayedText = currentMessage.substring(0, this.displayedText.length + 1);
@@ -551,170 +572,16 @@
             }
         }
 
-        // --- RENDER FUNCTIONS ---
-        function createWelcomeSection() {
-            const section = document.createElement('section');
-            section.className = 'welcome-section';
-            section.id = 'welcome';
-            section.innerHTML = `
-        <img src="${PROFILE_PICTURE_URL}" alt="Developer" class="profile-picture">
-        <div class="welcome-text">
-          <h1>S Harsha Vardhan</h1>
-          <div class="typing-text" id="typing"></div>
-        </div>
-      `;
-            return section;
-        }
+        const WELCOME_MESSAGES = [
+            "Hello, I'm Harsha Vardhan.",
+            "I'm a Full Stack Developer.",
+            "Welcome to my terminal."
+        ];
 
-        function createSection(command, children) {
-            const section = document.createElement('section');
-            section.className = 'section';
-
-            const commandDiv = document.createElement('div');
-            commandDiv.className = 'section-command';
-            commandDiv.innerHTML = `
-        <span class="command-user">harsha@ubuntu</span>
-        <span class="command-colon">:</span>
-        <span class="command-path">~</span>
-        <span class="command-text">$ ${command}</span>
-      `;
-
-            section.appendChild(commandDiv);
-            section.appendChild(children);
-            return section;
-        }
-
-        function createExperienceSection() {
-            const container = document.createElement('div');
-            container.className = 'experience-list';
-
-            EXPERIENCE_DATA.forEach(exp => {
-                const item = document.createElement('div');
-                item.innerHTML = `
-          <h3>${exp.role}</h3>
-          <p><span class="experience-company">${exp.company}</span> <span class="experience-duration">| ${exp.duration}</span></p>
-          <ul class="experience-description">
-            ${exp.description.map(desc => `<li>${desc}</li>`).join('')}
-          </ul>
-        `;
-                container.appendChild(item);
-            });
-
-            return createSection('./show-experience.sh', container);
-        }
-
-        function createProjectsSection() {
-            const container = document.createElement('div');
-            container.className = 'projects-list';
-
-            PROJECTS_DATA.forEach(project => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.innerHTML = `
-          <div class="project-header">
-            <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-name">
-              ${project.name}
-            </a>
-            <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="github-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-          </div>
-          <p class="project-description">${project.description}</p>
-          <div class="project-tech">
-            ${project.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
-          </div>
-        `;
-                container.appendChild(card);
-            });
-
-            return createSection('./view-projects.sh', container);
-        }
-
-        function createSkillsSection() {
-            const container = document.createElement('div');
-            container.className = 'skills-grid';
-
-            SKILLS_DATA.forEach(skillCat => {
-                const catDiv = document.createElement('div');
-                catDiv.className = 'skill-category';
-
-                const title = document.createElement('h3');
-                title.textContent = skillCat.category;
-                catDiv.appendChild(title);
-
-                const itemsDiv = document.createElement('div');
-                itemsDiv.className = 'skill-items';
-                skillCat.items.forEach(item => {
-                    const li = document.createElement('div');
-                    li.className = 'skill-item';
-                    li.textContent = item;
-                    itemsDiv.appendChild(li);
-                });
-
-                catDiv.appendChild(itemsDiv);
-                container.appendChild(catDiv);
-            });
-
-            return createSection('./list-skills.sh', container);
-        }
-
-        function createEducationSection() {
-            const container = document.createElement('div');
-            container.innerHTML = `
-        <h3 class="education-item" style="display: flex; flex-direction: column; gap: 0;">
-          <span>${EDUCATION_DATA.school}</span>
-        </h3>
-        <p class="education-degree">${EDUCATION_DATA.degree}</p>
-        <p class="education-meta">${EDUCATION_DATA.gpa} | ${EDUCATION_DATA.duration}</p>
-      `;
-
-            return createSection('./get-education.sh', container);
-        }
-
-        function createContactSection() {
-            const container = document.createElement('div');
-            container.className = 'contact-list';
-            container.innerHTML = `
-        <div class="contact-item">
-          <span class="contact-label">email:</span>
-          <a href="mailto:${CONTACT_DATA.email}" class="contact-link">${CONTACT_DATA.email}</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">linkedin:</span>
-          <a href="https://${CONTACT_DATA.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-link">${CONTACT_DATA.linkedin}</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">github:</span>
-          <a href="https://${CONTACT_DATA.github}" target="_blank" rel="noopener noreferrer" class="contact-link">${CONTACT_DATA.github}</a>
-        </div>
-      `;
-
-            return createSection('cat contact.txt', container);
-        }
-
-        // --- INIT ---
-        function init() {
-            const contentDiv = document.getElementById('content');
-
-            contentDiv.appendChild(createWelcomeSection());
-            contentDiv.appendChild(createExperienceSection());
-            contentDiv.appendChild(createProjectsSection());
-            contentDiv.appendChild(createSkillsSection());
-            contentDiv.appendChild(createEducationSection());
-            contentDiv.appendChild(createContactSection());
-
-            // Start typing effect
+        // Start
+        document.addEventListener('DOMContentLoaded', () => {
             new TypingEffect('typing', WELCOME_MESSAGES);
-        }
-
-        // Run on DOM load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
-        }
+        });
     </script>
 </body>
 
