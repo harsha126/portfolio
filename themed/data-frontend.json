@@ -1,0 +1,100 @@
+{
+    "meta": {
+        "title": "S Harsha Vardhan | Frontend Engineer",
+        "description": "Portfolio of S Harsha Vardhan, a Frontend Developer specializing in React.js, Next.js, UI/UX, and Web Performance."
+    },
+    "nav": {
+        "github": "https://github.com/harsha126",
+        "linkedin": "https://linkedin.com/in/harsha-vardhan-39aa47183/",
+        "resume": "../HarshaVardhan_SoftwareEngineer.pdf"
+    },
+    "hero": {
+        "label": "Portfolio 2026",
+        "titleHeadline1": "Harsha",
+        "titleHeadline2": "Vardhan",
+        "description": "Frontend Engineer crafting striking interfaces and dynamic experiences with React.js and Next.js. Building responsive accessible UIs with uncompromising aesthetics."
+    },
+    "experience": [
+        {
+            "company": "Sureify",
+            "date": "Nov 2023 - Present",
+            "role": "Frontend Engineer",
+            "highlights": [
+                "<strong>Architected</strong> scalable frontend architecture (React.js, Redux), reducing initial load time by 40%.",
+                "<strong>Engineered</strong> reusable UI Component Library, reducing code duplication by 60% across multiple products.",
+                "<strong>Optimized</strong> rendering performance and state management, improving application responsiveness by 35%.",
+                "<strong>Orchestrated</strong> automated frontend testing pipelines, achieving high code coverage and fewer regressions."
+            ]
+        },
+        {
+            "company": "Sureify",
+            "date": "Feb 2023 - Nov 2023",
+            "role": "Frontend Engineer Intern",
+            "highlights": [
+                "<strong>Developed</strong> interactive Poll Dashboard (React.js, Recharts) with real-time visualizations, slashing reporting time by 70%.",
+                "<strong>Designed</strong> responsive, mobile-first interfaces ensuring cross-browser compatibility and strict accessibility constraints."
+            ]
+        },
+        {
+            "company": "Ennea Solutions",
+            "date": "Jul 2022 - Feb 2023",
+            "role": "Frontend Engineer Intern",
+            "highlights": [
+                "<strong>Designed</strong> responsive React UI components for complex data visualization, improving user workflow efficiency by 45%.",
+                "<strong>Collaborated</strong> with product designers to implement pixel-perfect user interfaces and smooth CSS animations."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "title": "Code Editor Sandbox UI",
+            "link": "https://github.com/harsha126/lsp",
+            "description": "Coding sandbox frontend with real-time syntax highlighting, Monaco Editor integration, and interactive error reporting.",
+            "techStack": [
+                "React.js",
+                "Zustand",
+                "Tailwind CSS"
+            ],
+            "delayClass": ""
+        },
+        {
+            "title": "Airforce Hub Gateway",
+            "link": "https://github.com/harsha126/at-02-2",
+            "description": "Real-time interactive dashboard portal for Airforce personnel using WebSockets and smooth Framer Motion transitions.",
+            "techStack": [
+                "React.js",
+                "Socket.io-client",
+                "Framer Motion"
+            ],
+            "delayClass": "delay-1"
+        },
+        {
+            "title": "Repo AI Interface",
+            "link": "https://github.com/harsha126/repoai",
+            "description": "Sleek Next.js chat interface for an AI assistant with responsive design, streaming text generation, and markdown rendering.",
+            "techStack": [
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS"
+            ],
+            "delayClass": ""
+        }
+    ],
+    "skills": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Redux/Zustand",
+        "HTML5/CSS3",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Jest/RTL"
+    ],
+    "contact": {
+        "email": "harsha.sdm111@gmail.com",
+        "github": "https://github.com/harsha126",
+        "linkedin": "https://linkedin.com/in/harsha-vardhan-39aa47183/",
+        "resume": "../HarshaVardhan_SoftwareEngineer.pdf",
+        "copyright": "© 2026 S Harsha Vardhan. All rights reserved."
+    }
+}

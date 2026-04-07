@@ -1,0 +1,105 @@
+{
+    "meta": {
+        "title": "S Harsha Vardhan | Backend Engineer",
+        "description": "Portfolio of S Harsha Vardhan, a Backend Developer specializing in Java, Spring Boot, Node.js, and Distributed Systems."
+    },
+    "nav": {
+        "github": "https://github.com/harsha126",
+        "linkedin": "https://linkedin.com/in/harsha-vardhan-39aa47183/",
+        "resume": "../HarshaVardhan_SoftwareEngineer.pdf"
+    },
+    "hero": {
+        "label": "Portfolio 2026",
+        "titleHeadline1": "Harsha",
+        "titleHeadline2": "Vardhan",
+        "description": "Backend Engineer architecting robust scalable systems and secure APIs with Java, Spring Boot, and Node.js. Building high-performance core logic and resilient infrastructure."
+    },
+    "experience": [
+        {
+            "company": "Sureify",
+            "date": "Nov 2023 - Present",
+            "role": "Backend Engineer",
+            "highlights": [
+                "<strong>Architected</strong> scalable backend platform (Java Spring Boot, Node.js), implementing Redis caching to reduce API latency by 40%.",
+                "<strong>Engineered</strong> reusable Price Illustration Microservice, improving system modularity across multiple enterprise products.",
+                "<strong>Optimized</strong> database performance via advanced SQL query tuning, decreasing data retrieval times by 35%.",
+                "<strong>Orchestrated</strong> CI/CD pipelines (GitHub Actions, Jenkins) for AWS deployments, achieving 99.8% uptime and 50% faster releases."
+            ]
+        },
+        {
+            "company": "Sureify",
+            "date": "Feb 2023 - Nov 2023",
+            "role": "Backend Engineer Intern",
+            "highlights": [
+                "<strong>Developed</strong> scalable RESTful APIs (Node.js, Express) to support real-time data aggregation, slashing reporting time by 70%.",
+                "<strong>Designed</strong> secure authentication mechanisms with JWT and OAuth, deployed on AWS EC2 via automated CI/CD pipelines."
+            ]
+        },
+        {
+            "company": "Ennea Solutions",
+            "date": "Jul 2022 - Feb 2023",
+            "role": "Backend Engineer Intern",
+            "highlights": [
+                "<strong>Developed</strong> clean architecture Spring Boot microservices for high-volume pharmaceutical inventory management.",
+                "<strong>Designed</strong> optimized database schemas and wrote complex JPA/Hibernate queries to handle concurrent transactions reliably."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "title": "Code Editor Sandbox API",
+            "link": "https://github.com/harsha126/lsp",
+            "description": "Secure execution sandbox API for PHP and Java using Docker, coupled with Language Server protocol integration.",
+            "techStack": [
+                "Java",
+                "Spring Boot",
+                "Docker",
+                "WebSockets"
+            ],
+            "delayClass": ""
+        },
+        {
+            "title": "Airforce Hub Core",
+            "link": "https://github.com/harsha126/at-02-2",
+            "description": "High-throughput backend for collaboration portal using WebSockets and batch-based data management.",
+            "techStack": [
+                "Node.js",
+                "Express",
+                "MongoDB",
+                "Socket.io"
+            ],
+            "delayClass": "delay-1"
+        },
+        {
+            "title": "Repo AI Engine",
+            "link": "https://github.com/harsha126/repoai",
+            "description": "Robust RAG-based AI backend that processes and contextualizes large repository data securely via Vector Databases and Redis queues.",
+            "techStack": [
+                "Python",
+                "FastAPI",
+                "PostgreSQL",
+                "Redis",
+                "BullMQ"
+            ],
+            "delayClass": ""
+        }
+    ],
+    "skills": [
+        "Java",
+        "Spring Boot",
+        "Node.js",
+        "Python",
+        "AWS",
+        "Docker",
+        "PostgreSQL",
+        "Redis",
+        "Microservices"
+    ],
+    "contact": {
+        "email": "harsha.sdm111@gmail.com",
+        "github": "https://github.com/harsha126",
+        "linkedin": "https://linkedin.com/in/harsha-vardhan-39aa47183/",
+        "resume": "../HarshaVardhan_SoftwareEngineer.pdf",
+        "copyright": "© 2026 S Harsha Vardhan. All rights reserved."
+    }
+}

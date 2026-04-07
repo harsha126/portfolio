@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "S Harsha Vardhan | Software Explorer",
+    "description": "Portfolio of S Harsha Vardhan, a Full Stack Developer specializing in Java, Spring Boot, React.js, and System Design."
+  },
+  "nav": {
+    "github": "https://github.com/harsha126",
+    "linkedin": "https://linkedin.com/in/harsha-vardhan-39aa47183/",
+    "resume": "../HarshaVardhan_SoftwareEngineer.pdf"
+  },
+  "hero": {
+    "label": "Portfolio 2026",
+    "titleHeadline1": "Harsha",
+    "titleHeadline2": "Vardhan",
+    "description": "Full Stack Engineer crafting robust backends and striking interfaces with Java, Spring Boot, and React.js. Building scalable logic with uncompromising aesthetics."
+  },
+  "experience": [
+    {
+      "company": "Sureify",
+      "date": "Nov 2023 - Present",
+      "role": "Software Engineer",
+      "highlights": [
+        "<strong>Architected</strong> scalable backend platform (Java Spring Boot, Node.js), implementing Redis caching to reduce API latency by 40%.",
+        "<strong>Engineered</strong> reusable Price Illustration Microservice, reducing code duplication by 60% across multiple products.",
+        "<strong>Optimized</strong> database performance via advanced SQL query tuning, decreasing data retrieval times by 35%.",
+        "<strong>Orchestrated</strong> CI/CD pipelines (GitHub Actions, Jenkins) for AWS deployments, achieving 99.8% uptime and 50% faster releases."
+      ]
+    },
+    {
+      "company": "Sureify",
+      "date": "Feb 2023 - Nov 2023",
+      "role": "Software Engineer Intern",
+      "highlights": [
+        "<strong>Developed</strong> full-stack Poll Dashboard (React.js, Node.js) with real-time visualizations, slashing reporting time by 70%.",
+        "<strong>Designed</strong> secure RESTful APIs with JWT authentication, deployed on AWS EC2 via automated CI/CD pipelines."
+      ]
+    },
+    {
+      "company": "Ennea Solutions",
+      "date": "Jul 2022 - Feb 2023",
+      "role": "Software Engineer Intern",
+      "highlights": [
+        "<strong>Developed</strong> clean architecture Spring Boot features for pharmaceutical stock management.",
+        "<strong>Designed</strong> responsive React UI components for data visualization, improving user workflow efficiency by 45%."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Code Editor Sandbox",
+      "link": "https://github.com/harsha126/lsp",
+      "description": "Coding sandbox for PHP and Java with syntax highlighting, execution via Piston API, and Language Server integration.",
+      "techStack": ["React.js", "Spring Boot", "WebSockets"],
+      "delayClass": ""
+    },
+    {
+      "title": "Airforce Hub",
+      "link": "https://github.com/harsha126/at-02-2",
+      "description": "Real-time collaboration portal for Airforce personnel using WebSockets and batch-based data management.",
+      "techStack": ["Node.js", "MongoDB", "Socket.io"],
+      "delayClass": "delay-1"
+    },
+    {
+      "title": "Repo AI",
+      "link": "https://github.com/harsha126/repoai",
+      "description": "Robust RAG-based AI chat application that processes and contextualizes large repository data securely via WebSockets and Redis.",
+      "techStack": ["Next.js", "PostgreSQL", "Redis", "BullMQ", "OpenAI"],
+      "delayClass": ""
+    }
+  ],
+  "skills": [
+    "Java", "Spring Boot", "React.js", "Node.js", "AWS", "Docker", "PostgreSQL", "Microservices"
+  ],
+  "contact": {
+    "email": "harsha.sdm111@gmail.com",
+    "github": "https://github.com/harsha126",
+    "linkedin": "https://linkedin.com/in/harsha-vardhan-39aa47183/",
+    "resume": "../HarshaVardhan_SoftwareEngineer.pdf",
+    "copyright": "© 2026 S Harsha Vardhan. All rights reserved."
+  }
+}
