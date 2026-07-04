@@ -19,8 +19,34 @@
         content="Check out my developer portfolio. I build scalable web apps with Java, Spring Boot, and React." />
     <meta property="og:image"
         content="https://raw.githubusercontent.com/harsha126/portfolio/refs/heads/main/1688840241431.jpeg" />
-    <meta property="og:url" content="https://github.com/harsha126" />
+    <meta property="og:url" content="https://harshadev.in/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="S Harsha Vardhan | Full Stack Developer" />
+    <meta name="twitter:description"
+        content="Portfolio of S Harsha Vardhan — Full Stack Software Engineer (Java, Spring Boot, React.js). Featuring an interactive terminal." />
+    <meta name="twitter:image"
+        content="https://raw.githubusercontent.com/harsha126/portfolio/refs/heads/main/1688840241431.jpeg" />
+    <link rel="canonical" href="https://harshadev.in/" />
     <meta name="google-site-verification" content="yCjbJ8R7-AbgRNH9xkeEnPerCJUPIPu6vqNT8o7areM" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "S Harsha Vardhan",
+        "url": "https://harshadev.in/",
+        "image": "https://raw.githubusercontent.com/harsha126/portfolio/refs/heads/main/1688840241431.jpeg",
+        "jobTitle": "Full Stack Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Sureify" },
+        "email": "mailto:harsha.sdm111@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
+        "sameAs": [
+            "https://github.com/harsha126",
+            "https://linkedin.com/in/harsha-vardhan-39aa47183/"
+        ],
+        "knowsAbout": ["Java", "Spring Boot", "React.js", "Node.js", "TypeScript", "AWS", "Docker", "System Design", "Microservices", "PostgreSQL", "MongoDB", "Redis"]
+    }
+    </script>
 
     <!-- Prevent flash of wrong theme -->
     <script>
@@ -29,6 +55,9 @@
             document.documentElement.setAttribute('data-theme', t);
         })();
     </script>
+
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0f0a'/%3E%3Ctext x='14' y='70' font-size='52' font-family='monospace' font-weight='bold' fill='%2300ff41'%3E%26gt;_%3C/text%3E%3C/svg%3E" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -281,6 +310,7 @@
             height: 0.75rem;
             border-radius: 50%;
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .control-dot:hover {
@@ -1320,7 +1350,7 @@
             <!-- Interactive Terminal -->
             <div class="terminal-divider" id="terminal-interactive">
                 <div class="terminal-hint">
-                    Type '<span>help</span>' to see available commands. Try '<span>snake</span>' for a game!
+                    Type '<span>help</span>' to see all commands. Try '<span>github</span>' for live stats, '<span>matrix</span>', or '<span>snake</span>' for a game!
                 </div>
                 <div id="terminal-output"></div>
                 <div class="terminal-input-line" id="input-line">
@@ -1553,6 +1583,13 @@
                 this.currentDir = '~';
                 this.startTime = Date.now();
                 this.busy = false;
+                // Virtual filesystem: dirs & files per directory
+                this.fs = {
+                    '~': { dirs: ['projects', 'experience', 'skills'], files: ['about.txt', 'contact.txt', 'resume.txt', 'resume.pdf'] },
+                    '~/projects': { dirs: [], files: ['code-editor-sandbox.md', 'airforce-comm-hub.md', 'repo-ai.md'] },
+                    '~/experience': { dirs: [], files: ['sureify.md', 'ennea-solutions.md'] },
+                    '~/skills': { dirs: [], files: ['languages.txt', 'backend.txt', 'cloud-devops.txt', 'tools.txt'] },
+                };
                 this.setupEvents();
             }
 
@@ -1588,20 +1625,29 @@
                     }
                 });
                 this.mainScroll.addEventListener('click', (e) => {
-                    if (!window.getSelection().toString() && !this.busy) this.inputEl.focus();
+                    // preventScroll: focusing must not yank the page down to the input
+                    if (e.target.closest('a')) return;
+                    if (!window.getSelection().toString() && !this.busy) {
+                        this.inputEl.focus({ preventScroll: true });
+                    }
                 });
             }
 
             tabComplete() {
                 const partial = this.inputEl.value.toLowerCase();
-                if (!partial) return;
+                if (!partial || partial.includes(' ')) return;
                 const cmds = Object.keys(this._cmds);
                 const matches = cmds.filter(c => c.startsWith(partial));
                 if (matches.length === 1) {
                     this.inputEl.value = matches[0] + ' ';
                 } else if (matches.length > 1) {
-                    this.printCmd(partial);
-                    this.print(matches.join('  '));
+                    // complete to the longest common prefix, then show options
+                    let prefix = matches[0];
+                    for (const m of matches) {
+                        while (!m.startsWith(prefix)) prefix = prefix.slice(0, -1);
+                    }
+                    if (prefix.length > partial.length) this.inputEl.value = prefix;
+                    this.print(`<span class="cmd-dim">${matches.join('  ')}</span>`);
                 }
             }
 
@@ -1630,7 +1676,7 @@
                 this.busy = v;
                 this.inputEl.disabled = v;
                 document.getElementById('input-line').style.opacity = v ? '0.4' : '1';
-                if (!v) this.inputEl.focus();
+                if (!v) this.inputEl.focus({ preventScroll: true });
             }
 
             getUptime() {
@@ -1697,20 +1743,22 @@
                             ['help','Show this help message'],['about','Learn about me'],
                             ['skills','View technical skills'],['experience','View work experience'],
                             ['projects','View my projects'],['contact','Get contact info'],
-                            ['whoami','Who are you?'],['ls','List directory contents'],
-                            ['pwd','Print working directory'],['cd &lt;dir&gt;','Change directory'],
-                            ['cat &lt;file&gt;','Read a file'],['open resume','Download my resume'],
+                            ['github','Live GitHub stats'],['social','Where to find me online'],
+                            ['resume','Download my resume'],['whoami','Who are you?'],
+                            ['ls','List directory contents'],['pwd','Print working directory'],
+                            ['cd &lt;dir&gt;','Change directory'],['cat &lt;file&gt;','Read a file'],
                             ['clear','Clear the terminal'],['history','Command history'],
                             ['theme &lt;dark|light&gt;','Switch theme'],['banner','Show ASCII banner'],
-                            ['neofetch','System information'],['uptime','Page visit duration'],
+                            ['neofetch','System information'],['uptime','Session duration'],
                             ['date','Current date &amp; time'],['cal','Show calendar'],
-                            ['top','Running processes'],['weather','Current weather'],
+                            ['top','Running processes'],['weather &lt;city&gt;','Current weather'],
                             ['joke','Random programming joke'],['quote','Inspirational dev quote'],
                             ['ip','Your public IP address'],['ping &lt;host&gt;','Ping a host'],
-                            ['cowsay &lt;msg&gt;','ASCII cow says...'],['fortune','Random fortune'],
-                            ['figlet &lt;text&gt;','ASCII art text'],['matrix','Enter the Matrix'],
-                            ['hack','Hack the mainframe'],['snake','Play Snake game'],
-                            ['rickroll','???'],['sudo','Superuser do'],['exit','Exit terminal'],
+                            ['echo &lt;text&gt;','Print text'],['cowsay &lt;msg&gt;','ASCII cow says...'],
+                            ['fortune','Random fortune'],['figlet &lt;text&gt;','ASCII art text'],
+                            ['matrix','Enter the Matrix'],['hack','Hack the mainframe'],
+                            ['snake','Play Snake game'],['rickroll','???'],
+                            ['sudo','Superuser do'],['exit','Exit terminal'],
                         ];
                         let o = '<span class="cmd-bright cmd-bold">Available Commands:</span>\n\n';
                         cmds.forEach(([c,d]) => { o += `  <span class="cmd-green">${c.padEnd(22)}</span> ${d}\n`; });
@@ -1826,6 +1874,50 @@ building things that matter.</pre>`);
   <span class="cmd-green">Resume:</span>    Type '<span class="cmd-bright">open resume</span>' to download</pre>`);
                     },
 
+                    github: async () => {
+                        t.setBusy(true);
+                        t.print('<span class="cmd-dim">Fetching live data from the GitHub API...</span>');
+                        try {
+                            const [user, repos] = await Promise.all([
+                                fetch('https://api.github.com/users/harsha126').then(r => { if (!r.ok) throw new Error('api'); return r.json(); }),
+                                fetch('https://api.github.com/users/harsha126/repos?per_page=100&sort=updated').then(r => { if (!r.ok) throw new Error('api'); return r.json(); }),
+                            ]);
+                            const own = repos.filter(r => !r.fork);
+                            const stars = own.reduce((a, r) => a + r.stargazers_count, 0);
+                            const langs = {};
+                            own.forEach(r => { if (r.language) langs[r.language] = (langs[r.language] || 0) + 1; });
+                            const topLangs = Object.entries(langs).sort((a, b) => b[1] - a[1]).slice(0, 5)
+                                .map(([l]) => l).join(', ') || 'n/a';
+                            const recent = own.slice(0, 4)
+                                .map(r => `  <span class="cmd-green">*</span> <a href="${r.html_url}" target="_blank" rel="noopener" class="cmd-cyan">${t.esc(r.name)}</a>${r.description ? ' <span class="cmd-dim">- ' + t.esc(r.description.slice(0, 48)) + '</span>' : ''}`)
+                                .join('\n');
+                            t.print(`<pre><span class="cmd-bright cmd-bold">GitHub Stats (live)</span>  <span class="cmd-dim">github.com/harsha126</span>
+<span class="cmd-dim">────────────────────────────</span>
+  <span class="cmd-green">Public Repos:</span>  ${user.public_repos}
+  <span class="cmd-green">Followers:</span>     ${user.followers}
+  <span class="cmd-green">Total Stars:</span>   ${stars}
+  <span class="cmd-green">Top Languages:</span> ${t.esc(topLangs)}
+  <span class="cmd-green">Member Since:</span>  ${new Date(user.created_at).getFullYear()}
+
+<span class="cmd-bright">Recently updated:</span>
+${recent}</pre>`);
+                        } catch {
+                            t.print('<span class="cmd-red">GitHub API unavailable (rate limited?).</span> Visit <a href="https://github.com/harsha126" target="_blank" rel="noopener" class="cmd-cyan">github.com/harsha126</a>');
+                        }
+                        t.setBusy(false);
+                    },
+
+                    social: () => {
+                        t.print(`<pre><span class="cmd-bright cmd-bold">Find me online</span>
+<span class="cmd-dim">────────────────────────────</span>
+  <span class="cmd-green">GitHub:</span>    <a href="https://github.com/harsha126" target="_blank" rel="noopener" class="cmd-cyan">github.com/harsha126</a>
+  <span class="cmd-green">LinkedIn:</span>  <a href="https://linkedin.com/in/harsha-vardhan-39aa47183/" target="_blank" rel="noopener" class="cmd-cyan">linkedin.com/in/harsha-vardhan-39aa47183</a>
+  <span class="cmd-green">Email:</span>     <a href="mailto:harsha.sdm111@gmail.com" class="cmd-cyan">harsha.sdm111@gmail.com</a>
+  <span class="cmd-green">Website:</span>   <a href="https://harshadev.in" class="cmd-cyan">harshadev.in</a></pre>`);
+                    },
+
+                    resume: () => { t._cmds.open(['resume']); },
+
                     whoami: () => {
                         t.print(`<pre><span class="cmd-bright cmd-bold">Visitor Info</span>
 <span class="cmd-dim">────────────────────────────</span>
@@ -1839,18 +1931,31 @@ building things that matter.</pre>`);
   <span class="cmd-green">Session:</span>    ${t.getUptime()}</pre>`);
                     },
 
-                    ls: () => {
-                        t.print(`<pre><span class="cmd-blue">projects/</span>   <span class="cmd-blue">experience/</span>   <span class="cmd-blue">skills/</span>
-<span class="cmd-bright">about.txt</span>   <span class="cmd-bright">contact.txt</span>   <span class="cmd-bright">resume.pdf</span></pre>`);
+                    ls: (args) => {
+                        let dir = t.currentDir;
+                        if (args[0]) {
+                            const target = args[0].replace(/\/$/, '');
+                            const resolved = target.startsWith('~') ? target : (t.currentDir === '~' ? '~/' + target : t.currentDir + '/' + target);
+                            if (t.fs[resolved]) dir = resolved;
+                            else { t.print(`<span class="cmd-red">ls: ${t.esc(args[0])}: No such directory</span>`); return; }
+                        }
+                        const node = t.fs[dir];
+                        const parts = [
+                            ...node.dirs.map(d => `<span class="cmd-blue">${d}/</span>`),
+                            ...node.files.map(f => `<span class="cmd-bright">${f}</span>`)
+                        ];
+                        t.print(`<pre>${parts.join('   ')}</pre>`);
                     },
 
                     pwd: () => { t.print(`/home/harsha${t.currentDir === '~' ? '' : '/' + t.currentDir.replace('~/', '')}`); },
 
                     cd: (args) => {
-                        const dir = args[0] || '~';
+                        const dir = (args[0] || '~').replace(/\/$/, '');
                         if (dir === '..' || dir === '~' || dir === '-' || dir === '/') {
                             t.currentDir = '~'; t.pathEl.textContent = '~';
-                        } else if (['projects','experience','skills'].includes(dir)) {
+                        } else if (t.fs[t.currentDir].dirs.includes(dir)) {
+                            t.currentDir = '~/' + dir; t.pathEl.textContent = '~/' + dir;
+                        } else if (t.fs['~/' + dir]) {
                             t.currentDir = '~/' + dir; t.pathEl.textContent = '~/' + dir;
                         } else {
                             t.print(`<span class="cmd-red">cd: ${t.esc(dir)}: No such directory</span>`);
@@ -1858,12 +1963,13 @@ building things that matter.</pre>`);
                     },
 
                     cat: (args) => {
-                        const file = args.join(' ');
-                        if (!file) { t.print('<span class="cmd-red">Usage: cat &lt;filename&gt;</span>'); return; }
+                        const arg = args.join(' ');
+                        if (!arg) { t.print('<span class="cmd-red">Usage: cat &lt;filename&gt;</span>'); return; }
                         const files = {
-                            'about.txt': () => t._cmds.about(),
-                            'contact.txt': () => t._cmds.contact(),
-                            'resume.txt': () => {
+                            '~/about.txt': () => t._cmds.about(),
+                            '~/contact.txt': () => t._cmds.contact(),
+                            '~/resume.pdf': () => t.print(`<span class="cmd-dim">resume.pdf is a binary file.</span>\nType '<span class="cmd-green">open resume</span>' to download it.`),
+                            '~/resume.txt': () => {
                                 t.print(`<pre><span class="cmd-bright cmd-bold">S HARSHA VARDHAN</span>
 <span class="cmd-dim">Full Stack Software Engineer</span>
 <span class="cmd-dim">────────────────────────────</span>
@@ -1881,9 +1987,50 @@ Node.js, React.js, AWS, Docker, CI/CD, MongoDB, Redis
 
 <span class="cmd-dim">Type 'open resume' to download the full PDF.</span></pre>`);
                             },
+                            '~/projects/code-editor-sandbox.md': () => t.print(`<pre><span class="cmd-green cmd-bold"># Code Editor Sandbox</span>  <span class="cmd-dim">github.com/harsha126/lsp</span>
+Coding sandbox for PHP and Java with syntax highlighting,
+code execution via the Piston API, and full Language
+Server Protocol integration for IDE-like autocompletion.
+<span class="cmd-cyan">Stack:</span> React.js | Spring Boot | WebSockets | LSP</pre>`),
+                            '~/projects/airforce-comm-hub.md': () => t.print(`<pre><span class="cmd-green cmd-bold"># Airforce Communication Hub</span>  <span class="cmd-dim">github.com/harsha126/at-02-2</span>
+Real-time collaboration portal for Airforce personnel
+using WebSockets and batch-based data management.
+<span class="cmd-cyan">Stack:</span> Node.js | MongoDB | Socket.io | JWT</pre>`),
+                            '~/projects/repo-ai.md': () => t.print(`<pre><span class="cmd-green cmd-bold"># Repo Ai</span>  <span class="cmd-dim">github.com/harsha126/repoai</span>
+RAG-based AI chat application that processes and
+contextualizes repository data for conversational
+codebase exploration.
+<span class="cmd-cyan">Stack:</span> Node.js | PostgreSQL | Redis | BullMQ | React.js | OpenAI</pre>`),
+                            '~/experience/sureify.md': () => t.print(`<pre><span class="cmd-green cmd-bold"># Sureify</span>
+<span class="cmd-bright">Software Engineer</span> <span class="cmd-dim">(Nov 2023 - Present)</span>
+  * Scalable backend platform (Java Spring Boot, Node.js)
+  * Redis caching -> 40% API latency reduction
+  * Price Illustration Microservice -> 60% less duplication
+  * SQL tuning -> 35% faster data retrieval
+  * CI/CD on AWS -> 99.8% uptime, 50% faster releases
+
+<span class="cmd-bright">Software Engineer Intern</span> <span class="cmd-dim">(Feb 2023 - Nov 2023)</span>
+  * Full-stack Poll Dashboard -> 70% faster reporting
+  * Secure RESTful APIs with JWT auth on AWS EC2</pre>`),
+                            '~/experience/ennea-solutions.md': () => t.print(`<pre><span class="cmd-green cmd-bold"># Ennea Solutions</span>
+<span class="cmd-bright">Software Engineer Intern</span> <span class="cmd-dim">(Jul 2022 - Feb 2023)</span>
+  * Clean-architecture Spring Boot features for
+    pharmaceutical stock management
+  * Responsive React UI -> 45% workflow efficiency boost</pre>`),
+                            '~/skills/languages.txt': () => t.print('<pre><span class="cmd-green">Languages &amp; Data:</span> Java, Python, JavaScript, TypeScript, SQL (MySQL), Go</pre>'),
+                            '~/skills/backend.txt': () => t.print('<pre><span class="cmd-green">Backend &amp; Frameworks:</span> Spring Boot, Node.js (Express.js), React.js, Microservices, System Design, REST APIs</pre>'),
+                            '~/skills/cloud-devops.txt': () => t.print('<pre><span class="cmd-green">Cloud &amp; DevOps:</span> AWS (EC2, S3), Docker, CI/CD (Jenkins, GitHub Actions), Observability</pre>'),
+                            '~/skills/tools.txt': () => t.print('<pre><span class="cmd-green">Data Systems &amp; Tools:</span> Distributed Systems, ETL, MongoDB, Redis, PostgreSQL, JWT, Git, AI Coding Tools</pre>'),
                         };
-                        if (files[file]) { files[file](); }
-                        else { t.print(`<span class="cmd-red">cat: ${t.esc(file)}: No such file</span>`); }
+                        // resolve relative to current dir, then as a path from ~
+                        const candidates = [
+                            t.currentDir === '~' ? '~/' + arg : t.currentDir + '/' + arg,
+                            '~/' + arg,
+                            arg,
+                        ];
+                        const hit = candidates.find(c => files[c]);
+                        if (hit) { files[hit](); }
+                        else { t.print(`<span class="cmd-red">cat: ${t.esc(arg)}: No such file</span>`); }
                     },
 
                     open: (args) => {
@@ -1930,7 +2077,7 @@ Node.js, React.js, AWS, Docker, CI/CD, MongoDB, Redis
                         t.print(`<div class="neofetch-box"><pre class="neofetch-logo">${logo}</pre><div class="neofetch-data">${info}</div></div>`);
                     },
 
-                    uptime: () => { t.print(`<span class="cmd-green">Page visited:</span> ${t.getUptime()} ago`); },
+                    uptime: () => { t.print(`<span class="cmd-green">Session uptime:</span> ${t.getUptime()}`); },
 
                     date: () => { t.print(new Date().toString()); },
 
@@ -2090,8 +2237,14 @@ Node.js, React.js, AWS, Docker, CI/CD, MongoDB, Redis
                         };
 
                         const stopHandler = () => { cleanup(); };
-                        document.addEventListener('keydown', stopHandler);
-                        overlay.addEventListener('click', stopHandler);
+                        // Attach after the launching Enter keypress finishes bubbling,
+                        // otherwise that same event closes the overlay instantly.
+                        setTimeout(() => {
+                            if (!stopped) {
+                                document.addEventListener('keydown', stopHandler);
+                                overlay.addEventListener('click', stopHandler);
+                            }
+                        }, 100);
                         const autoStop = setTimeout(cleanup, 10000);
                     },
 
@@ -2223,10 +2376,12 @@ but you can never leave...</span>
 
                         const keyH = (e) => {
                             const k = e.key.toLowerCase();
-                            if ((k==='arrowup'||k==='w') && dir.y!==1) { nextDir={x:0,y:-1}; e.preventDefault(); }
-                            else if ((k==='arrowdown'||k==='s') && dir.y!==-1) { nextDir={x:0,y:1}; e.preventDefault(); }
-                            else if ((k==='arrowleft'||k==='a') && dir.x!==1) { nextDir={x:-1,y:0}; e.preventDefault(); }
-                            else if ((k==='arrowright'||k==='d') && dir.x!==-1) { nextDir={x:1,y:0}; e.preventDefault(); }
+                            // always swallow arrow keys during the game so the page doesn't scroll
+                            if (k.startsWith('arrow')) e.preventDefault();
+                            if ((k==='arrowup'||k==='w') && dir.y!==1) { nextDir={x:0,y:-1}; }
+                            else if ((k==='arrowdown'||k==='s') && dir.y!==-1) { nextDir={x:0,y:1}; }
+                            else if ((k==='arrowleft'||k==='a') && dir.x!==1) { nextDir={x:-1,y:0}; }
+                            else if ((k==='arrowright'||k==='d') && dir.x!==-1) { nextDir={x:1,y:0}; }
                             else if (k==='q') { endGame(); }
                         };
                         document.addEventListener('keydown', keyH);
@@ -2267,15 +2422,40 @@ but you can never leave...</span>
                     },
 
                     // ===== API POWERED =====
-                    weather: async () => {
+                    weather: async (args) => {
                         t.setBusy(true);
-                        t.print('<span class="cmd-dim">Getting your location...</span>');
                         try {
-                            const pos = await new Promise((res, rej) => {
-                                navigator.geolocation.getCurrentPosition(res, rej, {timeout:10000});
-                            });
-                            const lat = pos.coords.latitude.toFixed(2);
-                            const lon = pos.coords.longitude.toFixed(2);
+                            let lat, lon, place;
+                            if (args.length) {
+                                const city = args.join(' ');
+                                t.print(`<span class="cmd-dim">Searching for ${t.esc(city)}...</span>`);
+                                const g = await (await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)).json();
+                                if (!g.results || !g.results.length) {
+                                    t.print(`<span class="cmd-red">City not found: ${t.esc(city)}</span>`);
+                                    t.setBusy(false);
+                                    return;
+                                }
+                                lat = g.results[0].latitude;
+                                lon = g.results[0].longitude;
+                                place = `${g.results[0].name}${g.results[0].country ? ', ' + g.results[0].country : ''}`;
+                            } else {
+                                t.print('<span class="cmd-dim">Detecting your location... (tip: weather &lt;city&gt; works too)</span>');
+                                try {
+                                    const pos = await new Promise((res, rej) => {
+                                        navigator.geolocation.getCurrentPosition(res, rej, { timeout: 8000 });
+                                    });
+                                    lat = pos.coords.latitude;
+                                    lon = pos.coords.longitude;
+                                    place = 'your location';
+                                } catch {
+                                    // no permission — fall back to coarse IP-based location
+                                    const ipd = await (await fetch('https://ipapi.co/json/')).json();
+                                    if (!ipd.latitude) throw new Error('location unavailable');
+                                    lat = ipd.latitude;
+                                    lon = ipd.longitude;
+                                    place = `${ipd.city}, ${ipd.country_name} (via IP)`;
+                                }
+                            }
                             const resp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`);
                             const data = await resp.json();
                             const w = data.current_weather;
@@ -2291,10 +2471,10 @@ but you can never leave...</span>
   <span class="cmd-green">Temperature:</span>  ${w.temperature} C
   <span class="cmd-green">Wind Speed:</span>   ${w.windspeed} km/h
   <span class="cmd-green">Wind Dir:</span>     ${w.winddirection} deg
-  <span class="cmd-green">Location:</span>     ${lat}, ${lon}
+  <span class="cmd-green">Location:</span>     ${t.esc(place)}
 </pre>`);
                         } catch (e) {
-                            t.print('<span class="cmd-red">Could not get weather. Allow location access and try again.</span>');
+                            t.print('<span class="cmd-red">Could not get weather.</span> Try: <span class="cmd-green">weather &lt;city&gt;</span> (e.g. weather Hyderabad)');
                         }
                         t.setBusy(false);
                     },
@@ -2378,7 +2558,29 @@ but you can never leave...</span>
             initParticles();
             initScrollReveal();
             setTimeout(() => new TypingEffect('typing', WELCOME_MESSAGES), 1800);
-            setTimeout(() => new Terminal(), 2200);
+
+            // Terminal must be live immediately — a delayed init made early keystrokes vanish
+            const term = new Terminal();
+
+            // macOS-style window controls: small easter eggs
+            document.querySelector('.control-red').addEventListener('click', () => {
+                term.printCmd('close');
+                term.print('<span class="cmd-red">Nice try.</span> <span class="cmd-dim">This window refuses to close. Type \'exit\' if you must.</span>');
+                term.scroll();
+            });
+            document.querySelector('.control-yellow').addEventListener('click', () => {
+                term.printCmd('minimize');
+                term.print('<span class="cmd-dim">Minimized to tray... just kidding, there is no tray.</span>');
+                term.scroll();
+            });
+            document.querySelector('.control-green').addEventListener('click', () => {
+                const el = document.documentElement;
+                if (!document.fullscreenElement) {
+                    (el.requestFullscreen || el.webkitRequestFullscreen || function(){}).call(el);
+                } else {
+                    (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
+                }
+            });
         });
     </script>
 </body>
